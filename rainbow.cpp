@@ -36,7 +36,7 @@ char *cycleColors(int index){
 const int MAX_LENGTH = 5000; // provide memory
 
 int main() {
-    char inputString[MAX_LENGTH]; char rainbowString[MAX_LENGTH]; //define variables
+    char inputString[MAX_LENGTH]; char rainbowString[MAX_LENGTH] = ""; //define variables
 
     cout << "Your string: "; // get user input
     cin.get(inputString, MAX_LENGTH); // assign user input to inputString
