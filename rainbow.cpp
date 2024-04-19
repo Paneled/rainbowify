@@ -1,70 +1,36 @@
+// libraries from the c++ standard library
 #include <cstdlib>
 #include <iostream>
 #include <cstring>
 using namespace std;
-
-/*
- *    Black: \u001b[30m
- *    Red: \u001b[31m
- *    Green: \u001b[32m
- *    Orange: \u001b[33m
- *    Yellow: \u001b[93m
- *    Blue: \u001b[34m
- *    Magenta: \u001b[35m
- *    Cyan: \u001b[36m
- *    White: \u001b[37m
- */
-//return string from index
-char *cycleColors(int index){
-    switch (index) {
-        case 1:
-            return "\u001b[31m";
-        case 2:
-            return "\u001b[33m";
-        case 3:
-            return "\u001b[93m";
-        case 4:
-            return "\u001b[32m";
-        case 5:
-            return "\u001b[36m";
-        case 6:
-            return "\u001b[34m";
-        case 7:
-            return "\u001b[35m";
-        default:
-            return "";
-    }
+const char *colorArr[] = {"\u001b[31;1m", "\u001b[33;1m", "\u001b[93;1m", "\u001b[32;1m",
+"\u001b[36;1m", "\u001b[34;1m", "\u001b[35;1m"};
+const int MAX_LENGTH = 10000;
+void start(char inputString[MAX_LENGTH]) {
+char rainbowString[MAX_LENGTH] = "";
+int count = 0;
+int index = -1;
+while(count < MAX_LENGTH && inputString[count] != '\0'){
+count++;
 }
-
-const int MAX_LENGTH = 5000; // provide memory
-
-int main() {
-    char inputString[MAX_LENGTH]; char rainbowString[MAX_LENGTH] = ""; //define variables
-
-    cout << "Your string: "; // get user input
-    cin.get(inputString, MAX_LENGTH); // assign user input to inputString
-
-    int count = 0; // get length of user input for the loop
-
-    while(count < MAX_LENGTH && inputString[count] != '\0'){ // get the amount of indices in char array, then increment until null character
-        count++;
-    }
-
-    int index = 0; // make index
-
-    for (int i = 0; i < count; ++i) { // for each character up to the count
-        if(index >= 7){ // increment until 7, then reset
-            index = 1;
-        } else{
-            index++;
-        }
-        char* result = cycleColors(index);
-        strcat(rainbowString, result);
-        strncat(rainbowString, &inputString[i], 1); //add prefix to the current character
-        strcat(rainbowString, "\u001b[0m");
-    }
-
-    cout << "Your rainbow string: ";
-    cout << rainbowString << endl; //echo string
-    cout << "\u001b[37m";
+for (int i = 0; i < count; ++i) {
+if(index >= 6) {
+index = 0;
+} else {
+index++;
+}
+strcat(rainbowString, colorArr[index]);
+rainbowString[strlen(rainbowString)] = inputString[i];
+}
+cout << "Your rainbow string: ";
+cout << rainbowString << endl;
+cout << "\u001b[37m";
+}
+int main()
+{
+char input[MAX_LENGTH] = "";
+cout << "This program takes your text and turns it rainbow!" << endl;
+cout << "Enter your string: ";
+cin.get(input, MAX_LENGTH);
+start(input);
 }
