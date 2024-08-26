@@ -3,9 +3,10 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
-
+// list
 const char *colorArr[] = {"\u001b[31;1m", "\u001b[33;1m", "\u001b[93;1m", "\u001b[32;1m", "\u001b[36;1m", "\u001b[34;1m", "\u001b[35;1m"}; //colors and shit
 const int MAX_LENGTH = 10000;
+// sequencing
 void start(char inputString[MAX_LENGTH]) //do shit
 {
   char rainbowString[MAX_LENGTH] = "";
@@ -14,8 +15,9 @@ void start(char inputString[MAX_LENGTH]) //do shit
   while(count < MAX_LENGTH && inputString[count] != '\0'){
     count++;
   }
+  // loop
   for (int i = 0; i < count; ++i) {
-    if(index >= 6) {
+    if(index >= 6) { // selection
     index = 0;
     } else {
     index++;
